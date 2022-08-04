@@ -1,12 +1,10 @@
 package br.org.generation.avozes.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -26,7 +24,9 @@ public class Produto {
     @Size(min = 5, max = 255)
     private String descricao;
 
-    private int idade;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date nascimento;
+
     @NotBlank
     private char genero;
 
@@ -62,12 +62,12 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getIdade() {
-        return idade;
+    public Date getNascimento() {
+        return nascimento;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setNascimento(Date nascimento) {
+        this.nascimento = nascimento;
     }
 
     public char getGenero() {
