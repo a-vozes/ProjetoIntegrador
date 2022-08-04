@@ -1,12 +1,15 @@
 package br.org.generation.avozes.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_PRODUTO")
@@ -37,7 +40,11 @@ public class Produto {
 
     private String foto;
 
+@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+@JsonIgnoreProperties("produto")
+private List<Produto> produto;
 
+    
     public Long getId() {
         return id;
     }
@@ -93,4 +100,14 @@ public class Produto {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
+	}
+    
+    
 }
