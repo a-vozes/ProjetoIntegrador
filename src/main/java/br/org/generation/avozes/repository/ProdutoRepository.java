@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import br.org.generation.avozes.model.Produto;
 
-public interface ProdutoRepositorry {
+public interface ProdutoRepository {
 
 	
 	@Repository
