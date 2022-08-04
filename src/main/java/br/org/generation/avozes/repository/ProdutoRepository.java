@@ -8,12 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import br.org.generation.avozes.model.Produto;
 
-public interface ProdutoRepository {
-
 	
 	@Repository
 	
 	public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 		public List<Produto> findAllByProdutoContainingIgnoreCase(@Param("nome") String nome);
 	}
-}
