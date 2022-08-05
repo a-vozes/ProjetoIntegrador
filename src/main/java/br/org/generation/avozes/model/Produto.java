@@ -3,13 +3,13 @@ package br.org.generation.avozes.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Table(name = "TB_PRODUTO")
@@ -27,8 +27,9 @@ public class Produto {
     @Size(min = 5, max = 255)
     private String descricao;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date nascimento;
+    @NotBlank(message = "A data de nascimento é obrigatória e segue o modelo: dd-mm-yyyy")
+    @Size(min = 5, max = 25)
+    private String nascimento;
 
     @NotBlank
     private char genero;
@@ -40,11 +41,10 @@ public class Produto {
 
     private String foto;
 
-@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-@JsonIgnoreProperties("produto")
-private List<Produto> produto;
+    @ManyToOne
+    @JsonIgnoreProperties("produto")
+    private Categoria categoria;
 
-    
     public Long getId() {
         return id;
     }
@@ -69,11 +69,11 @@ private List<Produto> produto;
         this.descricao = descricao;
     }
 
-    public Date getNascimento() {
+    public String getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
 
@@ -101,13 +101,11 @@ private List<Produto> produto;
         this.foto = foto;
     }
 
-	public List<Produto> getProduto() {
-		return produto;
-	}
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-	public void setProduto(List<Produto> produto) {
-		this.produto = produto;
-	}
-    
-    
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }
