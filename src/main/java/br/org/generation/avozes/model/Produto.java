@@ -20,7 +20,7 @@ public class Produto {
     private Long id;
 
     @NotBlank(message = "O nome é obrigatório")
-    @Size(min = 3, max = 100)
+    @Size(min = 1, max = 100)
     private String nome;
 
     @NotBlank(message = "A descrição é obrigatória")
@@ -32,7 +32,7 @@ public class Produto {
     private String nascimento;
 
     @NotBlank
-    private char genero;
+    private String genero;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @NotNull(message = "Preço é obrigatório!")
@@ -77,11 +77,11 @@ public class Produto {
         this.nascimento = nascimento;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

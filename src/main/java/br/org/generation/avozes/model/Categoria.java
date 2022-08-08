@@ -17,7 +17,7 @@ public class Categoria {
     private Long id;
 
     @NotBlank
-    @Size(min = 5, max = 255)
+    @Size(min = 1, max = 255)
     private String tipoConselho;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
